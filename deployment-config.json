@@ -1,0 +1,16 @@
+{
+  "chainId": 196,
+  "factory": "0x1f09daefa827f02cbb40967cc91b259763760761",
+  "processor": {
+    "name": "TRACE Growth Processor",
+    "symbol": "TRACE",
+    "story": "An X Layer project discovery circuit that turns public pool observations into transparent presentation milestones. Every project stays visible; outputs do not attest to organic activity, project quality or returns.",
+    "transistorSupply": "100000",
+    "mintPriceOkb": "0.00001"
+  },
+  "firstCircuit": {
+    "nandCount": 8,
+    "nIn": 4,
+    "nOut": 2
+  }
+}
