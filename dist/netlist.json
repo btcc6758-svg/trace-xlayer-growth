@@ -1,0 +1,215 @@
+{
+  "format": "TapeOut EVM netlist",
+  "network": "X Layer",
+  "chainId": 196,
+  "inputs": [
+    "dataValid",
+    "depthReady",
+    "freshPool",
+    "activityObserved"
+  ],
+  "outputs": [
+    "discover",
+    "showcase"
+  ],
+  "nIn": 4,
+  "nOut": 2,
+  "nandCount": 8,
+  "byteLength": 56,
+  "sha256": "0x9790912fb410385d6750e5a535e26e9cc62a44bf8b56619ab12151fa4a979594",
+  "netlist": "0x0000000400000400000003000005000000060000070000000700000700000002000008000000020000090000000a00000a0000000b00000b",
+  "truthTable": [
+    {
+      "inputs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "outputs": [
+        1,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "outputs": [
+        1,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "outputs": [
+        1,
+        1
+      ]
+    },
+    {
+      "inputs": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "outputs": [
+        1,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "outputs": [
+        0,
+        0
+      ]
+    },
+    {
+      "inputs": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "outputs": [
+        1,
+        1
+      ]
+    }
+  ]
+}

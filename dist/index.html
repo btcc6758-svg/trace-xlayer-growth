@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#08131c" />
+    <meta
+      name="description"
+      content="展示 X Layer 新项目的公开进展，用 TapeOut 电路解释发现与展示里程碑。"
+    />
+    <title>TRACE · X Layer 项目成长地图</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308131c'/%3E%3Cpath d='M12 18h40M32 18v28M18 46h28' stroke='%2336dac7' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./circuit.js" defer></script>
+    <script src="./chain.js" defer></script>
+    <script src="./builder-chain.js" defer></script>
+    <script src="./app.js" defer></script>
+    <script src="./builder.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">T</span>
+        <div><strong>TRACE</strong><small>X LAYER / 项目成长地图</small></div>
+      </div>
+      <div class="top-actions">
+        <span class="chain-pill"><i></i> X Layer · Chain 196</span
+        ><button id="refresh" type="button">刷新数据</button>
+      </div>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <span class="eyebrow">X LAYER / PROJECT DISCOVERY</span>
+          <h1>看见新项目的每一步。</h1>
+          <p>
+            完整展示已索引的新池，用公开数据呈现新上线、基础储备和活动记录；TapeOut
+            电路让展示规则可复现。
+          </p>
+        </div>
+        <div class="source-state">
+          <span id="source-dot" class="state-dot"></span>
+          <div>
+            <strong id="source-title">正在读取 X Layer 新池</strong
+            ><span id="source-detail">数据源：GeckoTerminal，等待首次响应</span>
+          </div>
+        </div>
+      </section>
+      <section class="builder-portal" aria-labelledby="builder-title">
+        <div class="builder-heading">
+          <div>
+            <span class="eyebrow">BUILDER / PUBLIC MILESTONES</span>
+            <h2 id="builder-title">把项目进展做成可分享的展示卡</h2>
+            <p>
+              填入项目的公开资料，页面只读核对 X Layer 合约代码、TapeOut
+              工厂登记和流片数量。项目名称与外部链接由填写者提供。
+            </p>
+          </div>
+          <button id="builder-toggle" type="button" aria-expanded="false">
+            创建展示卡
+          </button>
+        </div>
+        <form id="builder-form" class="builder-form" hidden>
+          <label>
+            <span>项目名称 <em>自填</em></span>
+            <input
+              id="builder-name"
+              name="name"
+              required
+              maxlength="80"
+              placeholder="例如：我的 X Layer 项目"
+            />
+          </label>
+          <label>
+            <span>X Layer 合约地址 <em>链上核对</em></span>
+            <input
+              id="builder-contract"
+              name="contract"
+              required
+              maxlength="42"
+              spellcheck="false"
+              placeholder="0x…"
+            />
+          </label>
+          <label>
+            <span>TapeOut Processor 地址 <em>选填 · 工厂核对</em></span>
+            <input
+              id="builder-processor"
+              name="processor"
+              maxlength="42"
+              spellcheck="false"
+              placeholder="0x…"
+            />
+          </label>
+          <label>
+            <span>公开 GitHub 仓库 <em>选填 · 自填</em></span>
+            <input
+              id="builder-github"
+              name="github"
+              type="url"
+              maxlength="300"
+              placeholder="https://github.com/…"
+            />
+          </label>
+          <label>
+            <span>产品演示链接 <em>选填 · 自填</em></span>
+            <input
+              id="builder-demo"
+              name="demo"
+              type="url"
+              maxlength="300"
+              placeholder="https://…"
+            />
+          </label>
+          <div class="builder-submit">
+            <span
+              >展示卡通过链接分享；此页面不会替项目方提交资料或连接钱包。</span
+            >
+            <button type="submit">生成并核对</button>
+          </div>
+        </form>
+        <p id="builder-feedback" class="builder-feedback" role="status"></p>
+        <div id="builder-card" class="builder-card" hidden></div>
+      </section>
+      <section class="workspace">
+        <div class="panel candidate-panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">01 / DISCOVER</span>
+              <h2>新项目入口 <span id="count">—</span></h2>
+            </div>
+            <label class="search"
+              ><span>⌕</span
+              ><input
+                id="query"
+                type="search"
+                placeholder="搜索名称、地址"
+                aria-label="搜索名称或地址"
+            /></label>
+          </div>
+          <div class="list-head">
+            <span>交易池 / 币对</span><span>估算储备</span><span>公开阶段</span>
+          </div>
+          <div id="candidates" class="candidate-list" aria-live="polite">
+            <div class="empty">正在加载公开市场数据…</div>
+          </div>
+          <div class="list-foot">
+            <button id="more" type="button">加载更多候选</button>
+            <span id="page-status">当前仅第 1 页</span>
+          </div>
+        </div>
+        <div class="panel detail-panel">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">02 / PROGRESS</span>
+              <h2 id="detail-name">选择一个项目</h2>
+            </div>
+            <span id="detail-status" class="status muted">等待数据</span>
+          </div>
+          <p id="detail-intro" class="detail-intro">
+            点击左侧项目，查看新池的公开资料、进展里程碑和数据来源。
+          </p>
+          <div id="metrics" class="metrics"></div>
+          <div id="progress" class="progress"></div>
+          <div class="circuit-box">
+            <div class="circuit-title">
+              <div>
+                <span class="eyebrow">03 / TAPEOUT LOGIC</span>
+                <h3>成长电路</h3>
+              </div>
+              <span id="circuit-mode" class="mode-pill">本地试算 · 待流片</span>
+            </div>
+            <div id="circuit-inputs" class="bit-grid"></div>
+            <div id="circuit-output" class="circuit-output">
+              选择候选后显示输出
+            </div>
+            <div id="chain-result" class="chain-result">
+              主网电路尚未部署；当前仅展示门级试算。
+            </div>
+            <details>
+              <summary>查看 8 个 NAND 门的计算记录</summary>
+              <div id="gate-trace" class="gate-trace"></div>
+            </details>
+          </div>
+          <div id="links" class="links"></div>
+        </div>
+      </section>
+      <div class="method-note">
+        <strong>数据说明</strong
+        ><span
+          >这里展示的是 GeckoTerminal 已索引的交易池，不等于 X Layer
+          所有项目；池创建时间也不等于项目创建时间。储备是估算值，交易笔数不代表独立用户或自然增长；阶段标签不构成官方背书、奖励资格或投资建议。电路目前在浏览器内按
+          TapeOut NAND 格式试算，主网流片前不称为链上结果。</span
+        >
+      </div>
+    </main>
+  </body>
+</html>
