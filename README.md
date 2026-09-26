@@ -2,7 +2,9 @@
 
 TRACE helps people discover newly indexed X Layer pools and see their public progress. Every fetched pool remains visible. Builders can also make a shareable project card that rechecks public X Layer and TapeOut facts when opened. A small TapeOut-compatible NAND circuit expresses two reproducible pool-presentation milestones: a discovery entry and a public-progress showcase. The circuit labels describe observations about a pool, not the quality of a project or its token.
 
-The X Layer mainnet Processor has been created through the TapeOut factory. The first Circuit has not yet been taped out, so the site currently evaluates its logic locally and marks that status explicitly.
+The X Layer mainnet Processor and Circuit #1 are deployed through TapeOut. Two RPCs independently confirmed the tape-out event, NFT ownership and all 16 truth-table rows. The interface compares each selected pool’s local result with a read-only mainnet call.
+
+**Public demo:** https://trace-xlayer-growth.ccawaa.chatgpt.site
 
 ## Product flow
 
@@ -11,7 +13,7 @@ The X Layer mainnet Processor has been created through the TapeOut factory. The 
 3. Explain the pool's creation time, estimated USD reserve, reported 24-hour volume and buy/sell counts. Show exactly which inputs and NAND gates produced its presentation stage.
 4. Download a JSON snapshot with the observed fields, source page and time, policy thresholds, input/output bits, gate trace and netlist SHA-256. This preserves what the interface displayed at that time; it does not make external indexer data immutable.
 5. A builder can enter a project name, X Layer contract, optional TapeOut Processor, public GitHub and demo link. TRACE checks whether the contract address returns code, whether the Processor is registered by the official TapeOut factory, the Processor's reported circuit count, and whether the GitHub repository is public. The profile becomes a shareable URL; opening it runs the checks again.
-6. Once the circuit is taped out, compare the local result to a read-only X Layer `eval(uint256,bytes)` call. The UI already reserves this path and will show an error if the outputs disagree.
+6. Compare the local result to a read-only X Layer `eval(uint256,bytes)` call. The UI uses Circuit #1 and marks RPC failures or output mismatches explicitly.
 
 The builder card is self-service, with no account, wallet connection, backend submission or ownership signature. The project name, demo link and relationship between the entered contract and Processor are **self-reported and not verified**. `eth_getCode` establishes the presence of bytecode, not contract safety. GitHub's public repository response establishes accessibility, not authorship. RPC and GitHub failures appear as unavailable rather than as proof of absence; the card identifies a GitHub API rate limit separately. The share URL contains the entered public fields, and no centralized project directory stores it yet.
 
@@ -57,7 +59,7 @@ Use `node scripts/verify-mint.mjs --tx <mint transaction> --wallet <deployment w
 
 ## Mainnet status and issuance
 
-The [hackathon rules](https://ignix.bot/x_campaign) require a Processor created through the TapeOut factory on X Layer mainnet and at least one circuit taped out before the deadline. The creation transaction [succeeded on X Layer](https://www.oklink.com/xlayer/tx/0x34c4d8ef5f94775d83b8096b4ad7b5c032df700fadf3dc09dc049686fc4d769f). Two X Layer RPCs agree on the factory event and contract state. The Circuit remains pending. `dist/chain.js` has blank deployment identifiers, so its chain comparison remains disabled until the deployed circuit is checked against all 16 local truth-table rows.
+The [hackathon rules](https://ignix.bot/x_campaign) require a Processor created through the TapeOut factory on X Layer mainnet and at least one circuit taped out before the deadline. The creation transaction [succeeded on X Layer](https://www.oklink.com/xlayer/tx/0x34c4d8ef5f94775d83b8096b4ad7b5c032df700fadf3dc09dc049686fc4d769f). Circuit #1 [tape-out succeeded](https://www.oklink.com/xlayer/tx/0xf93f8803387a747c83ada2b4f69d977f674be2059b229b06a6227d7dd9e8510c) at block 71630664. On 26 September 2026, two RPCs agreed on the event, NFT owner, 4 inputs, 2 outputs, 8 gates, and all 16 truth-table rows. The verified identifiers in dist/chain.js enable the browser’s read-only comparison.
 
 | Mainnet identifier | Verified value |
 | --- | --- |
@@ -66,8 +68,10 @@ The [hackathon rules](https://ignix.bot/x_campaign) require a Processor created 
 | Transistors / ERC-1155 | `0x9F842F33147E477e1219e753e2929e1DFc0Fe16C` |
 | Factory creation transaction | `0x34c4d8ef5f94775d83b8096b4ad7b5c032df700fadf3dc09dc049686fc4d769f` |
 | Eight-NAND mint transaction | `0x6e8b770492acbdeefe672fba386b4de03211d417c80bce20f4f849ff14c0efab` |
+| Circuit ID | 1 |
+| Tape-out transaction | 0xf93f8803387a747c83ada2b4f69d977f674be2059b229b06a6227d7dd9e8510c |
 
-| Parameter             | Verified / planned          |
+| Parameter             | Verified / submitted          |
 | --------------------- | --------------------------- |
 | Processor name        | TRACE Growth Processor      |
 | Symbol                | TRACE                       |
@@ -75,8 +79,8 @@ The [hackathon rules](https://ignix.bot/x_campaign) require a Processor created 
 | NAND unit mint price  | 0.00001 OKB                 |
 | First circuit         | 8 NAND, 4 inputs, 2 outputs |
 
-Name, cap and mint price were verified on the new contracts; `TRACE` is the submitted symbol parameter. The factory charged 0.0066 OKB for creation. The new TRACE contracts report a 0.00066 OKB mint protocol fee and a 0.0013 OKB tape-out fee. Eight NAND mints would cost 0.00074 OKB including the mint fee, making all three transactions **0.00864 OKB** in protocol payments and mint price, excluding any network gas. Re-read fees and the wallet balance before each later signature. See [launch-checklist.md](launch-checklist.md) for verification steps.
+Name, cap and mint price were verified on the new contracts; `TRACE` is the submitted symbol parameter. The factory charged 0.0066 OKB for creation. The new TRACE contracts report a 0.00066 OKB mint protocol fee and a 0.0013 OKB tape-out fee. Minting eight NAND cost 0.00074 OKB including the mint fee, making all three transactions **0.00864 OKB** in protocol payments and mint price, excluding any network gas. All three transactions have succeeded. See [launch-checklist.md](launch-checklist.md) for verification steps.
 
 ## Submission status
 
-The public source repository is [btcc6758-svg/trace-xlayer-growth](https://github.com/btcc6758-svg/trace-xlayer-growth). The Processor and the eight-NAND mint are verified on mainnet. Taped-out Circuit, public demo and final entry remain required. The current hosted preview is private. [submission-draft.md](submission-draft.md) tracks the evidence fields.
+The public source repository is [btcc6758-svg/trace-xlayer-growth](https://github.com/btcc6758-svg/trace-xlayer-growth). Processor creation, the eight-NAND mint and Circuit #1 tape-out are verified on mainnet. The demo is public and final entry is being completed. [submission-draft.md](submission-draft.md) tracks the evidence fields.
