@@ -1,5 +1,9 @@
 (function (root) {
-  const deployment = { chainId: 196, processor: null, circuitId: null };
+  const deployment = {
+    chainId: 196,
+    processor: "0x7761cE17a2e75C6910f1D5a77E6F66CD9Ca1274a",
+    circuitId: 1,
+  };
   const rpc = "https://xlayerrpc.okx.com";
   const word = (n) => BigInt(n).toString(16).padStart(64, "0");
   const inputsToByte = (bits) => bits.reduce((n, bit, i) => n | (bit << i), 0);
