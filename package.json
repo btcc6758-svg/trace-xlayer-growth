@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "check": "node circuit.test.js && node chain.test.js && node builder-chain.test.js",
+    "check": "node circuit.test.js && node chain.test.js && node builder-chain.test.js && node vault-circuit.test.js && node vault-chain.test.js",
+    "export-vault-netlist": "node export-vault-netlist.js",
     "prepare-mainnet": "node scripts/prepare-mainnet.mjs",
     "verify-creation": "node scripts/verify-creation.mjs",
     "verify-mint": "node scripts/verify-mint.mjs",
