@@ -18,11 +18,8 @@
     <script src="./circuit.js" defer></script>
     <script src="./chain.js" defer></script>
     <script src="./builder-chain.js" defer></script>
-    <script src="./vault-circuit.js" defer></script>
-    <script src="./vault-chain.js" defer></script>
     <script src="./app.js" defer></script>
     <script src="./builder.js" defer></script>
-    <script src="./vault-sandbox.js" defer></script>
   </head>
   <body>
     <header class="topbar">
@@ -31,7 +28,6 @@
         <div><strong>TRACE</strong><small>X LAYER / 项目成长地图</small></div>
       </div>
       <div class="top-actions">
-        <a class="top-link" href="#vault-lab">金库规则沙盒</a>
         <span class="chain-pill"><i></i> X Layer · Chain 196</span
         ><button id="refresh" type="button">刷新数据</button>
       </div>
@@ -129,45 +125,6 @@
         </form>
         <p id="builder-feedback" class="builder-feedback" role="status"></p>
         <div id="builder-card" class="builder-card" hidden></div>
-      </section>
-      <section id="vault-lab" class="vault-lab" aria-labelledby="vault-title">
-        <div class="vault-head">
-          <div>
-            <span class="eyebrow">TAPEOUT / VAULT POLICY LAB</span>
-            <h2 id="vault-title">金库领取规则沙盒</h2>
-            <p>用真实的 Circuit #1 链上归属作为资格输入，试算下一枚 8-NAND 电路。窗口、领取记录和预算是可切换的模拟条件。</p>
-          </div>
-          <span class="vault-badge">Circuit #2 草案 · 未流片</span>
-        </div>
-        <div class="vault-columns">
-          <div class="vault-pane">
-            <h3>① 链上资格</h3>
-            <p>本演示仅把 TRACE Processor 的 Circuit #1 列入白名单；读取工厂登记、电路规格和当前 NFT 归属。</p>
-            <label class="vault-wallet-label" for="vault-wallet">查询钱包地址</label>
-            <div class="vault-wallet-row">
-              <input id="vault-wallet" type="text" value="0x1d207352dd708498cada1524eb4b36b5fa178886" maxlength="42" spellcheck="false" autocomplete="off" />
-              <button id="vault-check" type="button">只读核验</button>
-            </div>
-            <p id="vault-proof" class="vault-proof" role="status">等待链上核验</p>
-          </div>
-          <div class="vault-pane">
-            <h3>② 模拟金库条件</h3>
-            <p>这三项没有读取真实金库；开关只用于探索电路逻辑。</p>
-            <label class="vault-switch"><input id="vault-window" type="checkbox" checked /><span>领取窗口开放 <small>模拟</small></span></label>
-            <label class="vault-switch"><input id="vault-unused" type="checkbox" checked /><span>本轮尚未领取 <small>模拟</small></span></label>
-            <label class="vault-switch"><input id="vault-budget" type="checkbox" checked /><span>预算足够 <small>模拟</small></span></label>
-          </div>
-        </div>
-        <div class="vault-result-row">
-          <div class="vault-result"><span>可领取</span><strong id="vault-ready">待核验</strong></div>
-          <div class="vault-result"><span>资格成立，待补预算</span><strong id="vault-wait">待核验</strong></div>
-          <div class="vault-result vault-result-wide"><span>本次判断</span><strong id="vault-conclusion">先读取 Circuit #1 的链上归属</strong></div>
-        </div>
-        <p class="vault-disclosure">电路只计算布尔输出。真正的金库合约还须自行核验输入、管理领取记录和预算，并负责资产划转；本沙盒不连接钱包、不领取或托管资金，也不代表 IGNIX 已公布或采用此规则。</p>
-        <div class="vault-details">
-          <details><summary>查看 16 组输入输出</summary><div class="vault-table-wrap"><table id="vault-truth-table"></table></div></details>
-          <details><summary>查看 8 个 NAND 门与网表</summary><div id="vault-gates" class="vault-gates"></div><code id="vault-netlist" class="vault-netlist"></code></details>
-        </div>
       </section>
       <section class="workspace">
         <div class="panel candidate-panel">

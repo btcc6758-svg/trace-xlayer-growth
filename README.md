@@ -6,22 +6,6 @@ The X Layer mainnet Processor and Circuit #1 are deployed through TapeOut. Two R
 
 **Demo:** https://trace-xlayer-growth.ccawaa.chatgpt.site · **Source:** https://github.com/btcc6758-svg/trace-xlayer-growth
 
-## Vault policy sandbox (Circuit #2 candidate)
-
-The site now includes a **design-only** eight-NAND candidate for a future vault eligibility rule. Circuit #2 has **not** been taped out, and no official IGNIX vault integration or reward rule is claimed. The sandbox reads X Layer mainnet at one block to confirm that the TRACE Processor is factory-registered, Circuit #1 has the expected 4-input / 2-output / 8-gate dimensions, and a selected wallet currently owns its NFT. Only this Circuit #1 is on the demonstration allowlist. RPC failures leave eligibility unverified.
-
-The other three inputs are clearly labeled simulations: claim window open, this round's claim unused, and budget ready. They are never presented as live vault facts. The candidate's two outputs are:
-
-```
-candidate = eligibleCircuit AND windowOpen AND claimUnused
-canClaim = candidate AND budgetReady
-waitBudget = candidate AND NOT budgetReady
-```
-
-The [candidate netlist and all 16 truth-table rows](dist/vault-netlist.json) are deterministic; `node export-vault-netlist.js` regenerates them. `node vault-circuit.test.js` checks the logic and output ordering. `node vault-chain.test.js` tests block-pinned proof checks, non-owners, mismatched circuit dimensions, and fail-closed RPC errors. The original growth Circuit #1 and its on-chain comparison remain available unchanged.
-
-The browser does not connect a wallet, record claims, hold funds or send transactions. A future real vault adapter must derive every input from trusted on-chain state, enforce the approved circuit policy and one-claim-per-period limit, cap expenditures, and perform fund transfers itself. The candidate circuit only computes two Boolean outputs; it cannot verify external facts or move assets.
-
 ## Product flow
 
 1. Load X Layer new pools from [GeckoTerminal's public API](https://api.geckoterminal.com/api/v2/networks/x-layer/new_pools?page=1), with a button for additional pages. Only loaded pages are represented; this is not a complete X Layer project directory.
